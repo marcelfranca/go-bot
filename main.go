@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/joho/godotenv"
+	"github.com/marcelfranca/go-bot/handlers"
 	"github.com/slack-go/slack"
 	"github.com/slack-go/slack/slackevents"
 	"github.com/slack-go/slack/socketmode"
@@ -61,7 +62,7 @@ func main() {
 					}
 					// New we have an Events API event, but this event type can in turn be many types,
 					// so we actually need another type switch
-					err := HandleEventMessage(eventAPIEvent, client)
+					err := handlers.HandleEventMessage(eventAPIEvent, client)
 					if err != nil {
 						// Replace with actual handling
 						log.Fatal(err)
@@ -78,7 +79,7 @@ func main() {
 						continue
 					}
 					// HandleSlashCommand will take care of the command
-					payload, err := HandleSlashCommand(command, client)
+					payload, err := handlers.HandleSlashCommand(command, client)
 					if err != nil {
 						log.Fatal(err)
 					}
@@ -92,7 +93,7 @@ func main() {
 						continue
 					}
 
-					err := HandleInteractionEvent(interaction, client)
+					err := handlers.HandleInteractionEvent(interaction, client)
 					if err != nil {
 						log.Fatal(err)
 					}
