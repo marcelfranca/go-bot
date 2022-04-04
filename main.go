@@ -24,7 +24,7 @@ func main() {
 	appToken := os.Getenv("SLACK_APP_TOKEN")
 
 	// Create a new client to slack by giving token
-	// Set debug to true while developing
+	// Set OptionDebug to true while developing
 	client := slack.New(token, slack.OptionDebug(true), slack.OptionAppLevelToken(appToken))
 
 	// go-slack comes with SocketMode package that we need to use that accepts a Slack client and outputs a Socket mode client instead
